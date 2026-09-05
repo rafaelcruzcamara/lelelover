@@ -1,4 +1,5 @@
 import PillarArt from "./PillarArt";
+import { withBasePath } from "@/lib/basePath";
 
 /**
  * Mostra a foto do post (frontmatter `image`) quando existir;
@@ -9,7 +10,7 @@ export default function PostMedia({ post, className }) {
     // eslint-disable-next-line @next/next/no-img-element
     return (
       <img
-        src={post.image}
+        src={withBasePath(post.image)}
         alt={post.title}
         className={`object-cover ${className}`}
       />

@@ -1,4 +1,5 @@
 import { IconPhoto } from "@/components/icons";
+import { withBasePath } from "@/lib/basePath";
 import gallery from "@/content/gallery.json";
 
 export const metadata = { title: "Galeria · Fã Clube do Lelê" };
@@ -24,7 +25,7 @@ export default function GaleriaPage() {
               <>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={item.image}
+                  src={withBasePath(item.image)}
                   alt={item.caption}
                   className="w-full h-full object-cover"
                 />

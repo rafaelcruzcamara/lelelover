@@ -127,25 +127,19 @@ Criei um projeto Supabase novo, só pra esse site (separado de qualquer outro pr
 
 Pra ver ou mexer direto no banco, acessa [supabase.com/dashboard](https://supabase.com/dashboard), projeto **fa-clube-do-lele**.
 
-## Publicar no Netlify
+## Publicar no GitHub Pages
 
-O projeto já está pronto pra isso — `netlify.toml` configura o build sozinho (`npm run build`, publica a pasta `out`). Falta só conectar sua conta:
+O GitHub Pages publica esse repositório sozinho a cada push, via GitHub Actions (`.github/workflows/deploy.yml`). Ele builda com `npm run build:ghpages` — uma variação do build normal que já sabe que o site vai morar em `https://rafaelcruzcamara.github.io/lelelover/` (um subcaminho, não a raiz do domínio).
 
-**Pelo site (mais simples):**
-1. Entra em [app.netlify.com](https://app.netlify.com) e faz login/cria conta
-2. "Add new site" → "Import an existing project" → escolhe GitHub → repositório `rafaelcruzcamara/lelelover`
-3. As configurações de build já vêm certas do `netlify.toml` — só confirma
-4. Antes de clicar em "Deploy", adiciona as variáveis de ambiente (Site settings → Environment variables):
+**Passos únicos, direto no GitHub (github.com/rafaelcruzcamara/lelelover):**
+
+1. **Settings → Secrets and variables → Actions → New repository secret**, cria duas:
    - `NEXT_PUBLIC_SUPABASE_URL` → copia o valor do seu `.env.local`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY` → copia o valor do seu `.env.local`
-5. Deploy — a cada push no GitHub, o Netlify publica sozinho
+2. **Settings → Pages → Build and deployment → Source**: troca pra **"GitHub Actions"**
+3. Pronto. No próximo `git push`, o workflow builda e publica sozinho — acompanha em **Actions**, e o link final aparece em Settings → Pages
 
-**Pelo terminal, se preferir:**
-```
-npx netlify-cli login
-npx netlify-cli init
-npx netlify-cli deploy --prod
-```
+Como o site fica num subcaminho (`/lelelover/`), tudo que referencia uma imagem por caminho absoluto (`/images/...`) passa por um ajuste automático (`lib/basePath.js`) que adiciona esse prefixo só quando o build é o do GitHub Pages — o build normal (`npm run build`, usado pelo Capacitor) continua servindo a partir da raiz, sem esse prefixo.
 
 ## App Android (Capacitor)
 
