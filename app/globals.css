@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #3b1f63;
+  background-image: radial-gradient(
+    circle at 20% 10%,
+    rgba(255, 210, 63, 0.12),
+    transparent 40%
+  );
+}
+
+::selection {
+  background: #ff2e88;
+  color: #fbf5ff;
+}
+
+
+/* ===== Corpo do texto de um post ===== */
+.post-content {
+  font-size: 15.5px;
+  line-height: 1.8;
+  color: #1a1025;
+  max-width: 62ch;
+  overflow-wrap: break-word;
+}
+
+.post-content > p:first-of-type::first-letter {
+  font-family: "Bungee", cursive;
+  font-size: clamp(2.4rem, 11vw, 3.1rem);
+  line-height: 0.75;
+  float: left;
+  padding: 0.06em 0.09em 0 0;
+  margin-top: 0.03em;
+  color: #ff2e88;
+}
+
+.post-content p {
+  margin: 0 0 1.15em;
+}
+
+.post-content strong {
+  color: #ff2e88;
+  font-weight: 800;
+}
+
+.post-content em {
+  font-style: italic;
+  color: #3b1f63;
+}
+
+.post-content a {
+  color: #3b1f63;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: #00d9e9;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
+.post-content h2 {
+  font-family: "Bungee", cursive;
+  font-size: 1.05rem;
+  display: inline-block;
+  background: #ffd23f;
+  border: 3px solid #1a1025;
+  box-shadow: 3px 3px 0 #1a1025;
+  padding: 4px 12px;
+  margin: 1.9em 0 1em;
+  transform: rotate(-1deg);
+}
+
+.post-content ul,
+.post-content ol {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.3em;
+}
+
+.post-content li {
+  position: relative;
+  padding-left: 2em;
+  margin-bottom: 0.75em;
+}
+
+.post-content ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  width: 11px;
+  height: 11px;
+  background: #00d9e9;
+  border: 2px solid #1a1025;
+  transform: rotate(8deg);
+}
+
+.post-content ol {
+  counter-reset: fclube-item;
+}
+
+.post-content ol li::before {
+  counter-increment: fclube-item;
+  content: counter(fclube-item);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  background: #ffd23f;
+  border: 2px solid #1a1025;
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-content blockquote {
+  margin: 1.6em 0;
+  padding: 16px 20px;
+  background: #fbf5ff;
+  border: 3px solid #1a1025;
+  box-shadow: 4px 4px 0 #ff2e88;
+  transform: rotate(1deg);
+  font-style: italic;
+}
+
+.post-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.post-content hr {
+  border: none;
+  height: 12px;
+  margin: 2.2em auto;
+  width: 60%;
+  background-image: repeating-conic-gradient(
+    #1a1025 0% 25%,
+    transparent 0% 50%
+  );
+  background-size: 12px 12px;
+}
+
+.post-content img {
+  display: block;
+  width: 100%;
+  margin: 1.6em 0;
+  border: 3px solid #1a1025;
+  box-shadow: 5px 5px 0 #1a1025;
+}

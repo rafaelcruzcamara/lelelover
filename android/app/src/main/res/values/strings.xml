@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Fã Clube do Lelê</string>
+    <string name="title_activity_main">Fã Clube do Lelê</string>
+    <string name="package_name">com.faclubedolele.app</string>
+    <string name="custom_url_scheme">com.faclubedolele.app</string>
+</resources>

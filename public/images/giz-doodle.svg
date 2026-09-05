@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260">
+  <rect width="400" height="260" fill="#241040"/>
+  <g opacity="0.25">
+    <circle cx="40" cy="220" r="70" fill="#3B1F63"/>
+    <circle cx="370" cy="30" r="55" fill="#3B1F63"/>
+  </g>
+
+  <!-- traço de giz de fundo -->
+  <path d="M40 90 Q 120 60 200 95 T 360 80" stroke="#FBF5FF" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round" fill="none" opacity="0.5"/>
+
+  <!-- pedaço de giz maior -->
+  <g transform="translate(120,140) rotate(-18)">
+    <rect x="0" y="0" width="70" height="26" rx="6" fill="#FBF5FF" stroke="#1A1025" stroke-width="4"/>
+    <path d="M0 8 h70 M0 18 h70" stroke="#1A1025" stroke-width="1.5" opacity="0.25"/>
+  </g>
+
+  <!-- pedaço de giz menor voando -->
+  <g transform="translate(235,110) rotate(26)">
+    <rect x="0" y="0" width="34" height="24" rx="6" fill="#FBF5FF" stroke="#1A1025" stroke-width="4"/>
+  </g>
+
+  <!-- poeira de giz -->
+  <g fill="#FFD23F">
+    <circle cx="205" cy="118" r="3.5"/>
+    <circle cx="216" cy="100" r="2.5"/>
+    <circle cx="196" cy="102" r="2"/>
+  </g>
+  <g fill="#00D9E9">
+    <circle cx="222" cy="130" r="2.5"/>
+    <circle cx="212" cy="140" r="2"/>
+  </g>
+
+  <!-- linhas de impacto -->
+  <g stroke="#FF2E88" stroke-width="4" stroke-linecap="round">
+    <path d="M195 95 205 108"/>
+    <path d="M218 92 212 106"/>
+    <path d="M230 108 220 116"/>
+  </g>
+
+  <!-- estrela de destaque -->
+  <path d="M330 175 337 191 355 193 341 205 345 223 330 213 315 223 319 205 305 193 323 191Z" fill="#FFD23F" stroke="#1A1025" stroke-width="3" stroke-linejoin="round"/>
+</svg>

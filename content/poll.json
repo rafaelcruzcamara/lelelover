@@ -1,0 +1,10 @@
+{
+  "id": "desafio-lele-01",
+  "question": "Qual dessas ideias o Lelê deveria topar primeiro?",
+  "options": [
+    { "id": "novela", "label": "Encenar uma cena de novela" },
+    { "id": "coreografia", "label": "Aprender uma coreografia escolhida por vocês" },
+    { "id": "karaoke", "label": "Fazer um karaokê surpresa" },
+    { "id": "entrevista", "label": "Participar de uma entrevista sem contexto" }
+  ]
+}
