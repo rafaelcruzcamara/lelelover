@@ -127,9 +127,49 @@ Criei um projeto Supabase novo, só pra esse site (separado de qualquer outro pr
 
 Pra ver ou mexer direto no banco, acessa [supabase.com/dashboard](https://supabase.com/dashboard), projeto **fa-clube-do-lele**.
 
+## Publicar no Netlify
+
+O projeto já está pronto pra isso — `netlify.toml` configura o build sozinho (`npm run build`, publica a pasta `out`). Falta só conectar sua conta:
+
+**Pelo site (mais simples):**
+1. Entra em [app.netlify.com](https://app.netlify.com) e faz login/cria conta
+2. "Add new site" → "Import an existing project" → escolhe GitHub → repositório `rafaelcruzcamara/lelelover`
+3. As configurações de build já vêm certas do `netlify.toml` — só confirma
+4. Antes de clicar em "Deploy", adiciona as variáveis de ambiente (Site settings → Environment variables):
+   - `NEXT_PUBLIC_SUPABASE_URL` → copia o valor do seu `.env.local`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` → copia o valor do seu `.env.local`
+5. Deploy — a cada push no GitHub, o Netlify publica sozinho
+
+**Pelo terminal, se preferir:**
+```
+npx netlify-cli login
+npx netlify-cli init
+npx netlify-cli deploy --prod
+```
+
+## App Android (Capacitor)
+
+O site inteiro roda também como app Android de verdade, usando [Capacitor](https://capacitorjs.com/) — ele empacota a versão estática do site (gerada com `output: "export"` no `next.config.mjs`) dentro de um app nativo.
+
+Pra gerar um APK novo depois de mudar o site:
+
+```
+npm run build
+android\gradlew.bat -p android assembleDebug
+```
+
+(No PowerShell/CMD já funciona direto; no Git Bash, defina `JAVA_HOME` antes, apontando pro Java que vem dentro do Android Studio: `C:\Program Files\Android\Android Studio\jbr`.)
+
+O APK fica em `android/app/build/outputs/apk/debug/app-debug.apk` — copia esse arquivo pro celular e instala (o Android vai pedir pra permitir "instalar de fontes desconhecidas" na primeira vez, é normal pra apps fora da Play Store).
+
+Esse é um build de **debug** — bom pra testar à vontade. Pra publicar de verdade na Play Store, precisaria gerar uma versão assinada (`release`) e criar uma conta de desenvolvedor Google (~R$135, pagamento único).
+
+O ícone e a tela de abertura do app vêm de `assets/icon.png` e `assets/splash.png` (gerados a partir de `public/images/logo.png` com fundo roxo da marca). Pra trocar, edita esses arquivos e roda `npx @capacitor/assets generate --android` de novo.
+
 ## Próximos passos técnicos
 
-- Trocar as fotos placeholder da Galeria por imagens reais (pasta `public/`)
 - Colocar o link real do grupo em `app/comunidade/page.js`
-- Deploy no Vercel (conecta o repositório e publica sozinho a cada push)
-- Depois: PWA (instalável) e, se crescer, empacotar com Capacitor pra virar app
+- Deploy no Vercel (conecta o repositório e publica sozinho a cada push) — opcional, já que agora o app roda empacotado
+- Notificação push (próxima etapa combinada): precisa de Firebase Cloud Messaging + o plugin `@capacitor/push-notifications`, mais uma forma de disparar a notificação quando sair post/recado novo (dá pra fazer com uma Supabase Edge Function)
+- Mais pra frente: versão iOS (precisa de Mac + conta Apple Developer)
+- Se quiser publicar na Play Store: gerar build assinado (`release`) + conta de desenvolvedor Google
